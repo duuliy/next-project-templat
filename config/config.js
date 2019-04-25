@@ -2,7 +2,7 @@
 // const imgsrc = require("./static/images/icon.png");
 // import imgbg from '@v/images/img_bg.png'
 // import loadingComponent from '../components/PageLoading/PageLoading.js'
-//这里好多东西都还没上
+
 
 module.exports = {
     siteName: 'duuliy',
