@@ -2,8 +2,7 @@
 // const imgsrc = require("./static/images/icon.png");
 // import imgbg from '@v/images/img_bg.png'
 // import loadingComponent from '../components/PageLoading/PageLoading.js'
-
-
+//变个颜色
 module.exports = {
     siteName: 'duuliy',
     copyright: '这是一个ssr的应用',
