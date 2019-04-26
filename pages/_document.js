@@ -14,9 +14,15 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <style>{`body { margin: 0 } /* custom! */`}</style>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
+          <meta charSet="UTF-8" content="text/html"/>
+          <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+          <meta name="renderer" content="webkit" />
+          <meta name="keywords" content="duuliy" />
+          <meta name="description" content="duuliy" />
+          <link rel='stylesheet' href='https://cdn.bootcss.com/antd/3.1.3/antd.css'/>
         </Head>
-        <body className="custom_class">
+        <body>
           <Main />
           <NextScript />
         </body>

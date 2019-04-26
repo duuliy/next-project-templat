@@ -1,4 +1,4 @@
-import axios from 'axios';/*
+/*
 * @Author: duuliy 
 * @Date: 2018-11-15 11:17:11 
 * @Last Modified by: duuliy
@@ -9,7 +9,7 @@ import axios from 'axios';/*
 
 import axios from 'axios'
 // import { getToken } from './user.js'
-// import { baseUrl } from './env.js'
+import { baseUrl } from './env.js'
 // import qs from 'qs'
 
 
@@ -53,7 +53,7 @@ const fetch = (method, url, data) => {
    return new Promise((resolve, reject) => {
      axios.get(baseUrl + url, {
          headers: {
-           'Authorization': token
+          //  'Authorization': token
          }
        })
        .then(checkStatus)
@@ -69,7 +69,7 @@ const fetch = (method, url, data) => {
      axios.delete(baseUrl + url, {
          data: data,
          headers: {
-           'Authorization': token
+          //  'Authorization': token
          }
        })
        .then(checkStatus)
@@ -87,7 +87,7 @@ const fetch = (method, url, data) => {
          url: baseUrl + url,
          data: data,
          headers: {
-           'Authorization': token
+          //  'Authorization': token
          }
        })
        .then(checkStatus)

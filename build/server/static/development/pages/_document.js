@@ -2267,29 +2267,79 @@ function (_Document) {
           lineNumber: 16
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("style", {
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+        name: "viewport",
+        content: "initial-scale=1.0, width=device-width",
+        key: "viewport",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 17
         },
         __self: this
-      }, "body { margin: 0 } /* custom! */")), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("body", {
-        className: "custom_class",
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+        charSet: "UTF-8",
+        content: "text/html",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+        "http-equiv": "X-UA-Compatible",
+        content: "ie=edge",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 19
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], {
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+        name: "renderer",
+        content: "webkit",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 20
         },
         __self: this
-      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], {
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+        name: "keywords",
+        content: "duuliy",
         __source: {
           fileName: _jsxFileName,
           lineNumber: 21
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("meta", {
+        name: "description",
+        content: "duuliy",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("link", {
+        rel: "stylesheet",
+        href: "https://cdn.bootcss.com/antd/3.1.3/antd.css",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 23
+        },
+        __self: this
+      })), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement("body", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
         },
         __self: this
       })));

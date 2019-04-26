@@ -18,6 +18,10 @@
     "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/organization": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

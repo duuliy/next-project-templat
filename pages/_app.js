@@ -15,7 +15,7 @@ export default class MyApp extends App {
   render () {
     const {Component, pageProps} = this.props
     return <Container>
-        123
+        这里是app共有组件
       <Component {...pageProps} />
     </Container>
   }
