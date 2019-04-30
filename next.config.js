@@ -4,7 +4,7 @@ const withTypescript = require('@zeit/next-typescript')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = withTypescript(withLess({
-// generateEtags: false  //禁止etag 缓存协商
+// generateEtags: false  //禁止 etag 缓存协商
   distDir: 'build',
   pageExtensions: ['jsx', 'js', 'ts']
 //   webpack(config, options) {
