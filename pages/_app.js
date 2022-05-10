@@ -1,22 +1,15 @@
-import App, {Container} from 'next/app'
-import React from 'react'
+import { Provider } from 'react-redux'
+import stores from '@/stores'
+import { Layout } from '@/components/context/layouts'
+import '@/styles/globals.css'
+import 'antd/dist/antd.css'
 
-export default class MyApp extends App {
-  static async getInitialProps ({ Component, router, ctx }) {
-    let pageProps = {}
-
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
-    return {pageProps}
-  }
-
-  render () {
-    const {Component, pageProps} = this.props
-    return <Container>
-        这里是app共有组件
+function MyApp({ Component, pageProps }) {
+  return <Provider store={stores}>
+    <Layout>
       <Component {...pageProps} />
-    </Container>
-  }
+    </Layout>
+  </Provider>
 }
+
+export default MyApp

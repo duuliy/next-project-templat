@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/styles.chunk.css","sources":["webpack:///./pages/UserList/styles.less"],"sourcesContent":[".app > div {\n  color: green;\n}\n"],"mappings":"AAAA;AACA;AACA;;","sourceRoot":""}

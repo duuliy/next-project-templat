@@ -1,92 +1,107 @@
-import React, { PureComponent, Fragment } from 'react';
-import dynamic from 'next/dynamic'
-import { Button } from 'antd';
-
-
-// import UserList from "./UserList";
-// import Head from "../components/common/HeadView/index";
-import config from "../config/config";
+import { useState, useEffect, memo, useMemo, useCallback } from 'react'
 import Link from 'next/link'
-import Router from 'next/router'
-import dva from 'dva';
-import {
-  SignOutAsync
-} from '../services/api';
-import WithDva from '../utils/store';
+import dynamic from 'next/dynamic'
+import useTranslation from 'next-translate/useTranslation'
+import utilStyles from '@/styles/utils.module.scss'
+import { useLayout } from '@/components/context/layouts'
+import { getData } from '@/stores/count/effects'
+import { cloneDeep } from 'lodash'
+import { useSelector, useDispatch } from 'react-redux'
+import { Button } from 'antd'
+console.log(878,Button)
 
-const UserList = dynamic(import('./UserList'),{
-  ssr:false //禁止使用ssr
-})  //懒加载
+const DynamicComponent = dynamic(() =>
+  import('@/components/small-title').then((mod) => console.log(mod.SmallTitle))
+)
 
-const app = dva();
-class Home extends PureComponent {
+// const TestMemo = memo(({ name }) => {
+//   console.log('reconciler 渲染了', name)
+//   return <div>
+//     {name}
+//   </div>
+// })
 
-  //类似nuxt的asyncData，以及原理都是一样
-  //注意：getInitialProps将不能使用在子组件中。只能使用在pages页面中。
-  //参数如下：
-  //pathname - URL 的 path 部分
-  //query - URL 的 query 部分，并被解析成对象
-  //asPath - 显示在浏览器中的实际路径（包含查询部分），为String类型
-  //req - HTTP 请求对象 (只有服务器端有)
-  //res - HTTP 返回对象 (只有服务器端有)
-  //jsonPageRes - 获取数据响应对象 (只有客户端有)
-  //err - 渲染过程中的任何错误
+export default function Home({ myName ='duuliy' }) {
+  const [obj, setObj] = useState({ name:'memo测试'})
+  const [count, setCount] = useState(0)
+  const { t } = useTranslation("test")
+  const { number, data } = useSelector(state => state.count)
+  const dispatch = useDispatch()
+  const { isFooter, setIsFooter } = useLayout()
+  console.log(isFooter)
 
-  static async getInitialProps({ req }) {
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-    return { userAgent }
+  const getCake = async () => {
+    await dispatch(getData())
   }
 
-  routGo=(linkA)=>(linkB)=>(linkC)=>{
-    Router.push(
-      {
-        pathname: linkA+linkB+linkC,
-        query: { name: 'Zeit' },
-         shallow: true  //  这样不会执行 getInitialProps
-      })
+  useEffect(()=>{
+    getCake()
+  },[])
 
-      //Router.prefetch('/about')
+  useEffect(() => {
+    const _data = cloneDeep(data)
+    console.log(_data)
+  }, [data])
+
+  useEffect(()=>{
+    console.log('script注入方法:', window._getCookie)
+    if (count===6){
+      setObj({ name: 'memo改变了' })
+    }
+  }, [count])
+
+  const TestMemo = ({ name }) => {
+    console.log('reconciler 渲染了', name)
+    return <div>
+      {name}
+    </div>
   }
 
-  render(){
-    return (
-      <div className='app'>
-         {/* <Head/> */}
-        <h1>首页</h1>
-        <Button type='primary'>Hello world!</Button>
-         {this.props.userAgent} <br/>
-        <img style={{ width: 50 }} src={config.logoPath} alt=""/>
-        <UserList />
-        <Link href={{ pathname: '/UserList', query: { name: 'Zeit' }}} prefetch> 
-          {/* prefetch 后台预加载页面，达到最佳性能 (生产环境才行)
-            passHref 强制使 link和onclick都生效但是影响seo link里面加<a>就都可以
-          */}
-          <p style={{ color: 'blue',cursor:'pointer' }}>UserList</p>
-        </Link>
-        <button onClick={()=>{this.routGo('/')('organi')('zation')}}>去组织机构</button>
-        <style jsx>{`
-          h1 {
-            color: red;
-          }
-        `}</style>
-      </div>
-    )
-  }
+  const TestMemoW = useMemo(() => <TestMemo name={obj.name} />, [obj])
 
-  async componentDidMount(){
-    // const res = await SignOutAsync()
-    // await this.props.dispatch({ type: 'Home/QUERY' })
-    await this.props.dispatch({type: 'Home/QUERY'});
-    setTimeout(()=>{
-      console.log(this.props.data)
-    },1000)
-    // setTimeout(()=>{
-    //   console.log(this.props.data)
-    // },500)
-    // console.log(res)
-  }
-};
+  const ggf = <div>
+    变量测试
+  </div>
 
-export default WithDva(({ Home }) => ({
-  data: Home.admittanceBody
-}))(Home);
+  return (
+    <section className={utilStyles.headingMd}>
+      <DynamicComponent />
+      {t('test_welcome')}
+      {myName} 
+      <br />
+      {count}
+      <br />
+      <Link href="/test">
+        <a>SSR测试</a>
+      </Link>
+      <br />
+      <Link href="/csr-render">
+        <a>客户端渲染测试</a>
+      </Link>
+      <br />
+      <Link href={`/posts/ssg1`}>
+        <a>SSG动态路由1</a>
+      </Link>
+      <br />
+      <Link href={`/posts/ssg2`}>
+        <a>SSG动态路由2</a>
+      </Link>
+
+      {TestMemoW}
+
+      {ggf}
+      <button onClick={()=>setCount(pre => ++pre)}>
+        增加count
+      </button>
+
+      <button onClick={setIsFooter}>
+        是否footer
+      </button>
+
+      <p>{number}</p>
+      <Button type="primary" onClick={() => dispatch({ type: 'count/add' })}>+</Button> {' '}
+      <Button type="primary" onClick={() => dispatch({ type: 'count/reduce' })}>-</Button>
+
+    </section>
+  )
+}
