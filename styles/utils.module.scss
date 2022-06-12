@@ -1,3 +1,4 @@
+
 .heading2Xl {
   font-size: 2.5rem;
   line-height: 1.2;
@@ -29,9 +30,6 @@
   border-radius: 9999px;
 }
 
-.colorInherit {
-  color: inherit;
-}
 
 .padding1px {
   padding-top: 1px;
@@ -47,13 +45,19 @@
   margin: 0 0 1.25rem;
 }
 
-.lightText {
-  color: #666;
-}
-
 .success {
   color: yellow;
 }
 .error {
   color: red;
+}
+
+.testChange{
+  color: red;
+  // @apply bg-red-500  //支持这种写法相当棒，nice,非常多的时候可以这样便于维护
+}
+
+.skinPeeler{
+  color: var(--color-1);
+  background-color: var(--bg-1);
 }

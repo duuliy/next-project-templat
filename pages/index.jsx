@@ -8,7 +8,7 @@ import { getData } from '@/stores/count/effects'
 import { cloneDeep } from 'lodash'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from 'antd'
-console.log(878,Button)
+console.log(878, Button)
 
 const DynamicComponent = dynamic(() =>
   import('@/components/small-title').then((mod) => console.log(mod.SmallTitle))
@@ -21,8 +21,11 @@ const DynamicComponent = dynamic(() =>
 //   </div>
 // })
 
-export default function Home({ myName ='duuliy' }) {
-  const [obj, setObj] = useState({ name:'memo测试'})
+const LIGHT = 'light'
+const DARK = 'dark'
+
+export default function Home({ myName = 'duuliy' }) {
+  const [obj, setObj] = useState({ name: 'memo测试' })
   const [count, setCount] = useState(0)
   const { t } = useTranslation("test")
   const { number, data } = useSelector(state => state.count)
@@ -34,18 +37,23 @@ export default function Home({ myName ='duuliy' }) {
     await dispatch(getData())
   }
 
-  useEffect(()=>{
+  const skinPeeler = (type) => {
+    document.documentElement.setAttribute('data-theme', type)
+  }
+
+  useEffect(() => {
+    skinPeeler(LIGHT)
     getCake()
-  },[])
+  }, [])
 
   useEffect(() => {
     const _data = cloneDeep(data)
     console.log(_data)
   }, [data])
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log('script注入方法:', window._getCookie)
-    if (count===6){
+    if (count === 6) {
       setObj({ name: 'memo改变了' })
     }
   }, [count])
@@ -67,7 +75,7 @@ export default function Home({ myName ='duuliy' }) {
     <section className={utilStyles.headingMd}>
       <DynamicComponent />
       {t('test_welcome')}
-      {myName} 
+      {myName}
       <br />
       {count}
       <br />
@@ -90,7 +98,7 @@ export default function Home({ myName ='duuliy' }) {
       {TestMemoW}
 
       {ggf}
-      <button onClick={()=>setCount(pre => ++pre)}>
+      <button onClick={() => setCount(pre => ++pre)}>
         增加count
       </button>
 
@@ -101,6 +109,23 @@ export default function Home({ myName ='duuliy' }) {
       <p>{number}</p>
       <Button type="primary" onClick={() => dispatch({ type: 'count/add' })}>+</Button> {' '}
       <Button type="primary" onClick={() => dispatch({ type: 'count/reduce' })}>-</Button>
+      <br />
+      <Button type="primary" onClick={() => skinPeeler(LIGHT)}>light</Button>
+      <Button type="primary" onClick={() => skinPeeler(DARK)}>dark</Button>
+      eg:
+      <div className={utilStyles.skinPeeler}>
+        测试换肤
+      </div>
+
+      <div className="m-px ml-5 text-5xl text-green-1 ">
+        测试tailwind
+
+        <p className={`m-px ml-5 text-xs text-red-1
+        ${LIGHT === 'light' ? 'bg-green-2' : 'bg-green-200'}
+          `}>
+          字体描述
+        </p>
+      </div>
 
     </section>
   )

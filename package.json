@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=dev next dev -p 8888",
     "build": "cross-env NODE_ENV=production next build",
-    "start": "next start",
+    "start": "next start -p 8888",
     "lint": "next lint"
   },
   "husky": {
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "antd": "^4.20.3",
+    "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
@@ -34,9 +35,11 @@
     "immer": "^9.0.12",
     "lodash-webpack-plugin": "^0.11.6",
     "moment": "^2.29.3",
+    "postcss": "^8.4.13",
     "react-redux": "^8.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
-    "sass": "^1.50.0"
+    "sass": "^1.50.0",
+    "tailwindcss": "^3.0.24"
   }
 }
