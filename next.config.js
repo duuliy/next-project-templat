@@ -147,7 +147,39 @@ const nextConfig = {
           }
         }
       })
-      )
+    )
+    //代码切割，避免重复
+    config.optimization = {
+      ...config.optimization,
+      concatenateModules: true,
+      splitChunks: {
+        chunks: "all",
+        maxInitialRequests: Infinity,
+        minSize: 0,
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors"
+          },
+          commons: {
+            name: "commons",
+            minChunks: 2,
+            chunks: "initial"
+          },
+          styles: {
+            name: "styles",
+            test: /\.css$/,
+            chunks: "all",
+            minChunks: 2,
+            enforce: true
+          }
+        }
+      },
+    }
+
+    //source-map 可以用它自带的。
+    //图片的hash建议用babelc，重新配置图片的打包方式，来达到contenthash，而不用每次去改图片名字
+    //treesharking 也用babelc 和packagke 来强化
     return config
   },
   //以下2条感觉很鸡肋
