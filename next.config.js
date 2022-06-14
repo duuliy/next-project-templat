@@ -153,18 +153,14 @@ const nextConfig = {
       ...config.optimization,
       concatenateModules: true,
       splitChunks: {
-        chunks: "all",
-        maxInitialRequests: Infinity,
-        minSize: 0,
+        chunks: 'all',
         cacheGroups: {
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendors"
-          },
+          default: false,
+          vendors: false,
           commons: {
             name: "commons",
             minChunks: 2,
-            chunks: "initial"
+            chunks: "all"
           },
           styles: {
             name: "styles",
@@ -172,6 +168,27 @@ const nextConfig = {
             chunks: "all",
             minChunks: 2,
             enforce: true
+          },
+          main: {
+            name: 'main',
+            test: /[\\/]node_modules[\\/](next-server|next|core-js|regenerator-runtime|@babel)[\\/]/,
+            enforce: true,
+            chunks: 'all',
+            priority: 20,
+          },
+          react: {
+            name: 'main',
+            test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|immutable|redux-immutable)[\\/]/,
+            enforce: true,
+            chunks: 'all',
+            priority: 20
+          },
+          vendors: {
+            name: 'vendors',
+            test: /[\\/]node_modules[\\/](axios|lodash|moment)[\\/]/,
+            enforce: true,
+            chunks: 'all',
+            priority: 20,
           }
         }
       },
