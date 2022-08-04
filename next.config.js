@@ -40,7 +40,7 @@ const nextConfig = {
   //     ],
   //   }
   // },
-  // async redirects() {  //路由重定向配置
+  // async redirects() {  //路由重定向配置，可以当成proxy代理来使用
   //   return [
   //     {
   //       source: '/about',
