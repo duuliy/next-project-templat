@@ -1,5 +1,0 @@
-//自定义eslint
-
-{
-  "extends": "next/core-web-vitals"
-}

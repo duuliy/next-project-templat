@@ -1,34 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## 这是next.js+模块联邦的解决方案example
 
-```bash
-npm run dev
-# or
+next+qiankun两者单独拿出来都很重了，仅仅是为了共享组建，使用两者合并，并不合适。
+next+模块联邦来解决问题吧
+
+cd fe1
+yarn
 yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+cd fe2
+yarn
+yarn dev
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+cd fe3
+yarn
+yarn dev
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 注意
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1.next的ssr不支持模块联邦的ssr ，目前只有 @module-federation/nextjs-mf  付费支持ssr
+2.document.js这里必须再次利用localhost+指定端口引入（component_Header_jsx，src_utils_getSquareRoot_js），否则会在本端口（3002）去寻找以下文件而报错404
+3.next.js 不同于react和vue 能很好的搭配webpack5模块联邦, 请注意他的特殊性
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

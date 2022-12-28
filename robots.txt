@@ -1,9 +1,0 @@
-//robots.txt 告诉网站爬虫要爬的数据
-
-# Block all crawlers for /accounts  禁止爬去内容
-User-agent: *
-Disallow: /accounts
-
-# Allow all crawlers 允许内容
-User-agent: *
-Allow: /
