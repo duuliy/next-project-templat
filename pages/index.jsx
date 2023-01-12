@@ -117,16 +117,6 @@ export default function Home({ myName = 'duuliy' }) {
         测试换肤
       </div>
 
-      <div className="m-px ml-5 text-5xl text-green-1 ">
-        测试tailwind
-
-        <p className={`m-px ml-5 text-xs text-red-1
-        ${LIGHT === 'light' ? 'bg-green-2' : 'bg-green-200'}
-          `}>
-          字体描述
-        </p>
-      </div>
-
     </section>
   )
 }

@@ -13,7 +13,7 @@ export default function Home({ type = 'success', allPostsData }) {
         555
         {/* 加mock */}
         接口请求的数据是：{allPostsData.map(({ date, title }, i) => (
-          <li key={i} className={'ext-3xl font-bold underline ' + utilStyles.testChange}>
+          <li key={i} className={utilStyles.testChange}>
             {title}
             <br />
             {date}

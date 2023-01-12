@@ -170,18 +170,16 @@ const nextConfig = {
             enforce: true
           },
           main: {
-            name: 'main',
             test: /[\\/]node_modules[\\/](next-server|next|core-js|regenerator-runtime|@babel)[\\/]/,
             enforce: true,
             chunks: 'all',
-            priority: 20,
+            priority: 10
           },
           react: {
-            name: 'main',
             test: /[\\/]node_modules[\\/](react|react-dom|react-redux|redux|immutable|redux-immutable)[\\/]/,
             enforce: true,
             chunks: 'all',
-            priority: 20
+            priority: 15
           },
           vendors: {
             name: 'vendors',
